@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require "statico/version"
+require "logger"
+require "goliath"
+
+module Statico
+  class Server < Goliath::API
+    def initialize
+      @logger = Logger.new STDOUT
+      @logger.info "Hi! http://127.0.0.1/9000 is now available!"
+      super
+    end
+
+    use Rack::Static,
+      :root => Dir.pwd,
+      :urls => { "/" => "index.html" }
+
+    def on_headers(env, headers)
+      @logger.info env["REQUEST_URI"]
+    end
+  end
+end
