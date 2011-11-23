@@ -10,4 +10,4 @@ When you launch me I'll serve your static files on port 9000.
     cd /my/directory/
     statico
 
-    open 127.0.0.1:9090
+    open 127.0.0.1:9000
